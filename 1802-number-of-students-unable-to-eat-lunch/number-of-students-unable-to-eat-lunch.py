@@ -1,7 +1,7 @@
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
         length=len(students)
-        count=0
+        
         for i in range(length):
             for j in range(length):
                 try:
