@@ -5,11 +5,8 @@ def indexx(sel,length):
         sel=sel%length
         sel=(sel*2)+1
         return indexx(sel,length)
-
 class Solution:
-
     def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:
-        
         deck.sort()
         length=len(deck)
         ans=deck.copy()
