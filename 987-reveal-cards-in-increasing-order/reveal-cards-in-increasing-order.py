@@ -12,9 +12,10 @@ class Solution:
         
         deck.sort()
         length=len(deck)
-        ans=[]
-        for i in range(length):
-            ans.append(0)
+        ans=deck.copy()
+
+        # for i in range(length):
+        #     ans.append(0)
         for i in range(length):
             sel=i*2
             if(sel<=length-1):
