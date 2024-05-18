@@ -8,7 +8,8 @@ class Solution(object):
                 backtrack(S + '(', left + 1, right)
             if right < left:
                 backtrack(S + ')', left, right + 1)
-
+            print(S)
+            return
         result = []
         backtrack()
         return result
