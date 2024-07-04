@@ -5,8 +5,8 @@
 #         self.next = next
 class Solution:
     def mergeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        ans=ListNode()
-        ansitr=ans
+
+        itr2=head
         itr=head.next
         temp=0
         while(itr!=None):
@@ -14,10 +14,10 @@ class Solution:
                 temp+=itr.val
                 itr=itr.next
             else:
-                ansitr.val=temp
+                itr2.next=itr
+                itr2=itr2.next
+                itr2.val=temp
                 temp=0
-                if(itr.next!=None):
-                    ansitr.next=ListNode()
-                    ansitr=ansitr.next
                 itr=itr.next
-        return ans
+        return head.next
+        
