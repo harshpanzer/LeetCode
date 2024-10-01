@@ -5,7 +5,6 @@ class Solution:
         def sol(i,temp):
             if(i==length-1):
                 if((temp-nums[i])==target and (temp+nums[i])==target):
-
                     return 2
                 elif((temp-nums[i])==target or (temp+nums[i])==target):
                     return 1
