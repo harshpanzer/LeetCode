@@ -14,12 +14,13 @@ class Solution:
         #     return a+b
         # return sol(0,0)
 
-        dp=[[0 for i in range(n)] for j in range(m)]
-        dp[m-1][n-1]=1
+        dp=[0 for i in range(n)]
+        dp[n-1]=1
         for i in range(m-1,-1,-1):
-            
+            tp=[0 for i in range(n)]
             for j in range(n-1,-1,-1):
                 if(i==m-1 and j==n-1):
+                    tp[j]=1
                     continue
                 a=-1
                 b=-1
@@ -29,10 +30,11 @@ class Solution:
                 if(j+1<=n-1):
                     b=j+1
                 if(a!=-1):
-                    temp+=dp[a][j]
+                    temp+=dp[j]
                 if(b!=-1):
-                    temp+=dp[i][b]
-                dp[i][j]=temp
+                    temp+=tp[b]
+                tp[j]=temp
                 # print(i,j,temp)
+            dp=tp[:]
         # print(dp)
-        return dp[0][0]
+        return dp[0]
