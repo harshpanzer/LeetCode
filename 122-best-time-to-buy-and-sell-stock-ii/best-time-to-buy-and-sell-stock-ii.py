@@ -3,20 +3,18 @@ class Solution:
         lt=len(prices)
         dp={}
         def sol(i,buy):
-            a,b,c=0,0,0
-            if(i>lt-1):
+            a,b,c,d=0,0,0,0
+            if(i==lt):
                 return 0
             if(dp.get((i,buy))!=None):
                 return dp.get((i,buy))
             if(buy):
-                a=-prices[i]+sol(i+1,0)
-                b=sol(i+1,1)
+                a=sol(i+1,False)-prices[i]
+                b=sol(i+1,True)
             else:
-                a=prices[i]+sol(i+1,1)
-                b=sol(i+1,0)
-            dp[(i,buy)]=max(a,b)
-            return max(a,b)
-        return sol(0,1)
-
-        lt=len(prices)
+                c=sol(i+1,True)+prices[i]
+                d=sol(i+1,False)
+            dp[(i,buy)]=max(a,b,c,d)
+            return max(a,b,c,d)
+        return sol(0,True)
         
