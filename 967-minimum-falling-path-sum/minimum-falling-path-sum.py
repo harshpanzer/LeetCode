@@ -1,24 +1,21 @@
 class Solution:
-    def minFallingPathSum(self, matrix: List[List[int]]) -> int:
-        length1=len(matrix)
-        length2=len(matrix[0])
-        dic={}
-        def sol(row,col,temp):
-            if(row<0 or row>(length2-1)):
+    def minFallingPathSum(self, matrix: list[list[int]]) -> int:
+        n=len(matrix)
+        dp=[[float('inf') for i in range(n)] for i in range(n)]
+        def sol(i,j):
+            if(i>n-1 or j>n-1 or i<0 or j<0):
                 return float('inf')
-            if(col==length1-1):
-                return temp+matrix[col][row]
-            if(dic.get((col,row))!=None):
-                return dic.get((col,row))+temp
-            a=sol(row-1,col+1,temp+matrix[col][row])
-            b=sol(row,col+1,temp+matrix[col][row])
-            c=sol(row+1,col+1,temp+matrix[col][row])
-            ans=min(a,b,c)
-            dic[(col,row)]=ans-temp
-            return ans
-        ans=[]
-        for i in range(length2):
-            temp=sol(i,0,0)
-            print(temp)
-            ans.append(temp)
-        return min(ans)
+            if(i==n-1):
+                dp[i][j]=matrix[i][j]
+                return matrix[i][j]
+            if(dp[i][j]!=float('inf')):
+                return dp[i][j]
+            a=matrix[i][j]+sol(i+1,j-1)
+            b=matrix[i][j]+sol(i+1,j)
+            c=matrix[i][j]+sol(i+1,j+1)
+            dp[i][j]=min(a,b,c)
+            return dp[i][j]
+        for i in range(n):
+            sol(0,i)
+        return min(dp[0])
+    
